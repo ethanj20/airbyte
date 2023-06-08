@@ -46,7 +46,7 @@ public class DynamodbWriter {
     this.dynamodb = new DynamoDB(amazonDynamodb);
     this.configuredStream = configuredStream;
     this.uploadTimestamp = uploadTimestamp;
-    this.outputTableName = DynamodbOutputTableHelper.getOutputTableName(config.getTableNamePrefix(), configuredStream.getStream());
+    this.outputTableName = DynamodbOutputTableHelper.getOutputTableName(config.getTableNamePrefix(), configuredStream.getStream()).replace('_', '-');
 
     final DestinationSyncMode syncMode = configuredStream.getDestinationSyncMode();
     if (syncMode == null) {
@@ -158,7 +158,9 @@ public class DynamodbWriter {
       } catch (final Exception e) {
         LOGGER.error(e.getMessage(), e);
       }
+      LOGGER.info("Sugandese.");
       LOGGER.info("Data writing completed for DynamoDB.");
+      LOGGER.info("Ligma.");
     }
   }
 
